@@ -42,6 +42,6 @@ next-env.d.ts
 
 # project
 .docs
-.cursor
-.vscode
+#.cursor
+#.vscode
 .codegraph
