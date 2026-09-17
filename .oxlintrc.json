@@ -1,0 +1,280 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "ignorePatterns": [
+    ".next/**",
+    "out/**",
+    "build/**",
+    "dist/**",
+    "node_modules/**",
+    "next-env.d.ts",
+    "e2e/**",
+    "e2e-results/**",
+    "playwright-report/**",
+    "storybook-static/**"
+  ],
+  "plugins": [
+    "eslint",
+    "typescript",
+    "unicorn",
+    "oxc",
+    "import",
+    "react",
+    "react-perf",
+    "nextjs",
+    "jsx-a11y",
+    "vitest"
+  ],
+  "jsPlugins": [
+    {
+      "name": "security",
+      "specifier": "oxlint-plugin-security-rules"
+    }
+  ],
+  "options": {
+    "typeAware": true,
+    "maxWarnings": 0
+  },
+  "categories": {
+    "correctness": "error",
+    "suspicious": "error",
+    "restriction": "error",
+    "perf": "warn"
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "builtin": true
+  },
+  "settings": {
+    "react": {
+      "version": "19.3.0",
+      "linkComponents": [
+        {
+          "name": "Link",
+          "linkAttribute": "href"
+        }
+      ]
+    },
+    "next": {
+      "rootDir": "."
+    },
+    "jsx-a11y": {
+      "components": {
+        "Link": "a",
+        "Button": "button"
+      }
+    }
+  },
+  "rules": {
+    "typescript/no-explicit-any": "error",
+    "typescript/no-require-imports": "error",
+    "typescript/no-floating-promises": ["error", { "ignoreVoid": true }],
+    "typescript/no-misused-promises": ["error", { "checksVoidReturn": { "attributes": false, "arguments": false } }],
+    "typescript/await-thenable": "error",
+    "typescript/promise-function-async": "off",
+    "typescript/explicit-function-return-type": "off",
+    "typescript/explicit-module-boundary-types": "off",
+    "typescript/explicit-member-accessibility": "off",
+    "typescript/no-unsafe-type-assertion": "warn",
+    "typescript/no-unnecessary-type-conversion": "warn",
+    "typescript/no-non-null-assertion": "warn",
+    "typescript/consistent-return": "warn",
+    "typescript/use-unknown-in-catch-callback-variable": "warn",
+    "typescript/no-redundant-type-constituents": "warn",
+    "typescript/no-invalid-void-type": "warn",
+    "typescript/no-unnecessary-type-parameters": "warn",
+    "typescript/non-nullable-type-assertion-style": "off",
+    "typescript/no-extraneous-class": "off",
+    "typescript/no-base-to-string": "warn",
+    "typescript/restrict-template-expressions": "warn",
+    "typescript/no-unsafe-enum-comparison": "warn",
+    "typescript/no-var-requires": "warn",
+    "typescript/unbound-method": "warn",
+    "typescript/no-unnecessary-type-assertion": "warn",
+    "prefer-as-const": "error",
+    "no-unused-vars": [
+      "warn",
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_"
+      }
+    ],
+    "no-console": "warn",
+    "no-debugger": "error",
+    "prefer-const": "error",
+    "no-eval": "error",
+    "no-implied-eval": "error",
+    "no-new-func": "error",
+    "no-unsafe-optional-chaining": "off",
+    "no-control-regex": "off",
+    "no-undefined": "off",
+    "no-eq-null": "off",
+    "no-void": "off",
+    "no-plusplus": "off",
+    "no-use-before-define": "off",
+    "no-empty-function": "off",
+    "no-underscore-dangle": "off",
+    "complexity": "off",
+    "oxc/no-optional-chaining": "off",
+    "oxc/no-async-await": "off",
+    "oxc/no-rest-spread-properties": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-filename-extension": "off",
+    "react/jsx-no-literals": "off",
+    "react/forbid-component-props": "off",
+    "react/no-multi-comp": "off",
+    "react/todo": "off",
+    "react/only-export-components": [
+      "warn",
+      {
+        "allowConstantExport": true,
+        "allowExportNames": [
+          "metadata",
+          "generateMetadata",
+          "generateStaticParams",
+          "generateViewport",
+          "viewport",
+          "dynamic",
+          "revalidate",
+          "fetchCache"
+        ]
+      }
+    ],
+    "react/no-unstable-nested-components": "warn",
+    "react/set-state-in-effect": "warn",
+    "react/exhaustive-effect-dependencies": "warn",
+    "react/incompatible-library": "warn",
+    "react/memo-dependencies": "warn",
+    "react/iframe-missing-sandbox": "warn",
+    "react/button-has-type": "warn",
+    "react/no-danger": "warn",
+    "react-hooks/exhaustive-deps": "warn",
+    "oxc/no-barrel-file": "off",
+    "jsx-a11y/role-has-required-aria-props": "warn",
+    "jsx-a11y/no-noninteractive-element-to-interactive-role": "warn",
+    "jsx-a11y/click-events-have-key-events": "warn",
+    "jsx-a11y/no-static-element-interactions": "warn",
+    "jsx-a11y/interactive-supports-focus": "warn",
+    "unicorn/require-post-message-target-origin": "warn",
+    "import/no-default-export": "off",
+    "import/no-relative-parent-imports": "off",
+    "import/no-unassigned-import": "off",
+    "import/no-cycle": "warn",
+    "jsx-a11y/prefer-tag-over-role": "off",
+    "jsx-a11y/control-has-associated-label": "warn",
+    "no-shadow": "warn",
+    "no-alert": "warn",
+    "default-case": "warn",
+    "unicorn/no-null": "off",
+    "unicorn/filename-case": "off",
+    "unicorn/no-array-for-each": "off",
+    "unicorn/no-array-reduce": "off",
+    "unicorn/prefer-number-properties": "off",
+    "unicorn/consistent-function-scoping": "off",
+    "unicorn/prefer-module": "off",
+    "unicorn/no-array-sort": "warn",
+    "unicorn/prefer-set-has": "off",
+    "vitest/require-test-timeout": "off",
+    "vitest/require-mock-type-parameters": "off",
+    "vitest/valid-expect": "warn",
+    "security/detect-eval-with-expression": "error",
+    "security/detect-unsafe-regex": "error",
+    "security/detect-child-process": "error",
+    "security/detect-non-literal-fs-filename": "warn",
+    "security/detect-non-literal-require": "error",
+    "security/detect-bidi-characters": "error",
+    "security/detect-non-literal-regexp": "warn",
+    "security/detect-new-buffer": "error",
+    "security/detect-pseudoRandomBytes": "error",
+    "security/detect-disable-mustache-escape": "error",
+    "security/detect-no-csrf-before-method-override": "warn"
+  },
+  "overrides": [
+    {
+      "files": ["src/entities/**/*"],
+      "rules": {
+        "no-restricted-imports": [
+          "error",
+          {
+            "patterns": [
+              {
+                "group": ["@/app/**", "@/features/**", "@/widgets/**"],
+                "message": "entities слой может импортировать только из shared"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "files": ["src/features/**/*"],
+      "rules": {
+        "no-restricted-imports": [
+          "error",
+          {
+            "patterns": [
+              {
+                "group": ["@/app/**", "@/widgets/**"],
+                "message": "features слой может импортировать только из entities и shared"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "files": ["src/widgets/**/*"],
+      "rules": {
+        "no-restricted-imports": [
+          "error",
+          {
+            "patterns": [
+              {
+                "group": ["@/app/**"],
+                "message": "widgets слой может импортировать только из features, entities и shared"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "files": ["src/shared/lib/logger/**", "src/shared/lib/dev-console.ts"],
+      "rules": {
+        "no-console": "off"
+      }
+    },
+    {
+      "files": ["**/*.{spec,test}.{ts,tsx}", "**/*.stories.{ts,tsx}", ".storybook/**"],
+      "rules": {
+        "typescript/no-unsafe-type-assertion": "off",
+        "typescript/unbound-method": "off",
+        "typescript/no-misused-spread": "off",
+        "react-perf/jsx-no-new-function-as-prop": "off",
+        "react-perf/jsx-no-new-object-as-prop": "off",
+        "react-perf/jsx-no-new-array-as-prop": "off",
+        "react-perf/jsx-no-jsx-as-prop": "off"
+      }
+    },
+    {
+      "files": [
+        "src/app/[locale]/admin/images/ui/components/modals/metadata-modal.tsx",
+        "src/app/[locale]/admin/images/ui/components/modals/server-images-modal.tsx"
+      ],
+      "rules": {
+        "nextjs/no-img-element": "off"
+      }
+    },
+    {
+      "files": [
+        "src/widgets/card-wallet/wallet-holder-jettons.tsx",
+        "src/**/jettons/ui/jettons-table.tsx",
+        "src/app/**/admin/jettons/ui/admin-jettons-table.tsx",
+        "src/features/edit-entity/**/*.tsx"
+      ],
+      "rules": {
+        "react/incompatible-library": "off"
+      }
+    }
+  ]
+}

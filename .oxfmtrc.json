@@ -1,0 +1,35 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "trailingComma": "es5",
+  "printWidth": 120,
+  "tabWidth": 2,
+  "semi": true,
+  "singleQuote": false,
+  "quoteProps": "as-needed",
+  "arrowParens": "avoid",
+  "sortPackageJson": false,
+  "sortTailwindcss": {},
+  "sortImports": {
+    "groups": [
+      "type",
+      "value-builtin",
+      "value-external",
+      "value-internal",
+      ["value-parent", "value-sibling", "value-index"]
+    ],
+    "newlinesBetween": false,
+    "ignoreCase": true,
+    "order": "asc"
+  },
+  "ignorePatterns": [
+    ".next/**",
+    "out/**",
+    "build/**",
+    "dist/**",
+    "node_modules/**",
+    "storybook-static/**",
+    "e2e-results/**",
+    "playwright-report/**",
+    "coverage/**"
+  ]
+}
