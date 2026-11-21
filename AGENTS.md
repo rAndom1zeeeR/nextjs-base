@@ -1,60 +1,38 @@
 # AGENTS.md
 
-## Cursor Cloud specific instructions
+Clean Next.js app. No backend, database, auth, or E2E in this repo.
 
-### Product scope
+## Stack
 
-This repo is **ArrayTON frontend only** (Next.js 16 on port **3010**). The NestJS backend lives in a **sibling** repo (`../backend`, not bundled here). Full local Playwright E2E expects both repos.
+- Next.js 16 App Router (`src/app`), React 19, TypeScript strict
+- Tailwind CSS v4 via `@tailwindcss/postcss`, styles in `src/app/globals.css`
+- shadcn/ui (new-york). Aliases in `components.json`: UI in `@/shared/components/ui`, `cn` in `@/shared/lib/utils`
+- React Compiler is on: `reactCompiler: true` in `next.config.ts`
+- Lint is oxlint, format is oxfmt. No ESLint or Prettier
+- Package manager is pnpm
 
-### Dependency install
+## Commands
 
-- Package manager: **pnpm 11** (matches CI; `corepack prepare pnpm@11.2.2 --activate`).
-- Node: **24** (CI; Dockerfile тоже на Node 24).
-- Install: `pnpm install --frozen-lockfile` from repo root.
+| Task         | Command                |
+| ------------ | ---------------------- |
+| Install      | `pnpm install`         |
+| Dev server   | `pnpm dev` (port 3000) |
+| Lint (fix)   | `pnpm lint`            |
+| Lint check   | `pnpm lint:check`      |
+| Format       | `pnpm format`          |
+| Format check | `pnpm format:check`    |
+| Unused code  | `pnpm knip`            |
+| Build        | `pnpm build`           |
+| Start        | `pnpm start`           |
 
-### Environment variables (important)
+No env is required for `dev` or `build`. `NODE_ENV` overrides and `SKIP_ENV_VALIDATION` are not used.
 
-Cloud VMs may inject API URL env vars pointing at a local backend port (e.g. `:3001`). Without a local backend, **override both public and internal API URL vars** to a reachable staging/production API host when starting dev:
+## Conventions
 
-```bash
-export NEXT_PUBLIC_API_URL="<reachable-api-host>"
-export INTERNAL_API_URL="<reachable-api-host>"
-export NEXT_PUBLIC_SEND_LOGS_IN_DEV=false
-pnpm dev
-```
+- Alias `@/*` → `src/*`
+- Server Components by default. `use client` only for Web APIs and interactivity
+- Put new shadcn components on the aliases from `components.json`, not in `src/components`
+- Do not use `any`
+- Do not add ESLint, Prettier, Jest, or Playwright until they are in `package.json`
 
-Copy `.env.local.example` patterns from `e2e/README.md` when running E2E with a local backend (`NEXTAUTH_SECRET`, test user creds).
-
-### Build gotcha
-
-The VM may set a non-standard `NODE_ENV`. For production builds use:
-
-```bash
-NODE_ENV=production SKIP_ENV_VALIDATION=1 pnpm build
-```
-
-### Standard commands
-
-| Task         | Command                                                 |
-| ------------ | ------------------------------------------------------- |
-| Dev server   | `pnpm dev` (default port 3010)                          |
-| Lint         | `pnpm lint`                                             |
-| Format check | `pnpm format:check`                                     |
-| Unit tests   | CI: `pnpm run test` (Jest)                              |
-| E2E          | CI: Playwright local stack (postgres + redis + backend) |
-| Build        | `NODE_ENV=production SKIP_ENV_VALIDATION=1 pnpm build`  |
-| E2E (full)   | Clone `../backend`, configure env, then `pnpm test`     |
-| Health       | Hit `/api/health` on the dev server port                |
-
-### E2E without backend
-
-Playwright `webServer` in `playwright.config.ts` starts `../backend` + `pnpm dev`. Without the backend repo, use **remote E2E** (`PLAYWRIGHT_E2E_REMOTE=1`) against deployed URLs, or limit verification to lint/build/dev + API proxy smoke (`/api/proxy/protocols?limit=1`).
-
-### Services
-
-| Service                | Required for frontend dev | Notes                                                           |
-| ---------------------- | ------------------------- | --------------------------------------------------------------- |
-| Next.js (`pnpm dev`)   | Yes                       | Port 3010                                                       |
-| NestJS backend         | Optional\*                | \*Required for localhost API; use production API override above |
-| PostgreSQL/Redis/MinIO | No (backend)              | Only when running local backend                                 |
-| Playwright Chromium    | E2E only                  | `pnpm exec playwright install chromium`                         |
+`pnpm knip` currently fails: the shadcn dependencies and `src/shared/lib/utils.ts` are not imported yet. That is the starter kit, not dead code. Do not delete it just to make knip pass unless asked.
